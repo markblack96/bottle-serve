@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bottle Video Server</title>
+<nav>
+    <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="/upload">Upload</a></li>
+    </ul>
+</nav>
+<div id="root">
+    <ul>
+        % for video in videos:
+            <li><a href="video/{{video}}">{{video}}</a></li>
+        % end
+    </ul>
+</div>

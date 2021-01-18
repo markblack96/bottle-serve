@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bottle Video Server</title>
+<nav>
+    <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="/upload">Upload</a></li>
+    </ul>
+</nav>
+<form method="POST" enctype="multipart/form-data" action="/upload">
+    <label for="title">Title</label><input type="text" name="title"/>
+    <label for="upload">File</label><input type="file" name="upload"/>
+    <label for="submit">Submit</label><input type="submit" value="Upload"/>
+</form>

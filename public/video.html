@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bottle Video Server</title>
+<style>
+    video {
+        max-height: 66vh;
+    }
+</style>
+<nav>
+    <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="/upload">Upload</a></li>
+    </ul>
+</nav>
+<!--
+    This page is for single videos
+-->
+<div id="video">
+    <video>
+        <source src="{{f}}">
+    </video>
+</div>
+<!--script>
+const PseudoComp = function (options) { // https://gomakethings.com/how-to-create-a-state-based-ui-component-with-vanilla-js/
+    this.elem = document.querySelector(options.selector);
+    this.data = options.data;
+    this.template = options.template;
+};
+
+(async ()=> {
+    const app = new PseudoComp({
+        selector: '#video',
+        data: {
+            videoSrc: window.location.href.split('/')[window.location.href.split('/').length-1],
+            playlist: sessionStorage.getItem('playlist') !== null ? sessionStorage.getItem('playlist').split(',') : []
+        },
+        template: function(props) {
+            console.log(props)
+            return `
+                <h1>Watch Video</h1>
+                <video controls>
+                    <source src='/videos/${props.videoSrc}'/>    
+                </video>
+                <div id="playlist">
+                    Next Videos
+                    <ul>
+                    ${props.playlist.map(p=>`<li>${p}</li>`)}
+                    </ul>
+                </div>
+            `
+        }
+    })
+    
+    PseudoComp.prototype.render = function () {
+        this.elem.innerHTML = this.template(this.data)
+    }
+    
+    app.render();
+    /*
+    if (sessionStorage.getItem('playlist')) {
+        let playlist = sessionStorage.getItem('playlist').split(',');
+        playlist.shift()
+        sessionStorage.setItem('playlist', playlist)
+    }
+    */
+    let vid = document.querySelector('video');
+    vid.onended = ()=>{
+        console.log("ended")
+        if (sessionStorage.getItem('playlist')) {
+            let playlist = sessionStorage.getItem('playlist').split(',');
+            let nextVid = playlist.shift()
+            sessionStorage.setItem('playlist', playlist)
+            window.location.replace('/video/'+nextVid)
+        }
+    }
+})()
+</script-->
