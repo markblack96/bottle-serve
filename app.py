@@ -3,10 +3,9 @@ import bottle
 import os
 from io import BytesIO
 from threading import Thread
+from config import Config
 
-
-VIDEOS_DIRECTORY = '/home/ethan/Videos/'
-# VIDEOS_DIRECTORY = '/home/pi/Videos/'
+VIDEOS_DIRECTORY = Config.VIDEOS_DIRECTORY
 
 @route('/')
 def index():
@@ -56,7 +55,7 @@ def upload():
     if request.method == 'POST':
         print("request received")
         f = request.files.get('upload')
-        task_thread = Thread(target=handleUpload, args=(f,), daemon=True)# set daemon to True so it terminates when the function returns
+        task_thread = Thread(target=handleUpload, args=(f,), daemon=True)
         task_thread.start()
         print("Starting to save file")
         return HTTPResponse(status=202, body='<h1>File uploading</h1>')
